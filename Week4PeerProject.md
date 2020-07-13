@@ -208,3 +208,67 @@ unique(readStormData$PROPDMGEXP)
 Since we have already subset the original data based on the EVTYPE, FATALITIES, INJURIES, PROPDMG, PROPDMGEXP, CROPDMG and CROPDMGEXP we now need to process the data further in such a way that for each "EVTYPE" we need to find the FATALTIES and INJURIES.
 
 Doing the above process would give us an insight as to which event type caused maximum fatalities and injuries.
+
+
+```r
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
+# Aggregating and arranging the Fatalities and Injuries
+
+stormDataFatalities <- arrange(aggregate(FATALITIES ~ EVTYPE, data = readStormData, sum), desc(FATALITIES), EVTYPE)[1:10,]
+
+stormDataFatalities
+```
+
+```
+##            EVTYPE FATALITIES
+## 1         TORNADO       5633
+## 2  EXCESSIVE HEAT       1903
+## 3     FLASH FLOOD        978
+## 4            HEAT        937
+## 5       LIGHTNING        816
+## 6       TSTM WIND        504
+## 7           FLOOD        470
+## 8     RIP CURRENT        368
+## 9       HIGH WIND        248
+## 10      AVALANCHE        224
+```
+
+```r
+stormDataInjuries <- arrange(aggregate(INJURIES ~ EVTYPE, data = readStormData, sum), desc(INJURIES), EVTYPE)[1:10,] 
+
+stormDataInjuries
+```
+
+```
+##               EVTYPE INJURIES
+## 1            TORNADO    91346
+## 2          TSTM WIND     6957
+## 3              FLOOD     6789
+## 4     EXCESSIVE HEAT     6525
+## 5          LIGHTNING     5230
+## 6               HEAT     2100
+## 7          ICE STORM     1975
+## 8        FLASH FLOOD     1777
+## 9  THUNDERSTORM WIND     1488
+## 10              HAIL     1361
+```

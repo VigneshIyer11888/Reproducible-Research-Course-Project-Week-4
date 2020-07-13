@@ -512,6 +512,45 @@ unique(readStormData$PROPDMGEXP)</code></pre>
 <h4>1. Across the United States, which types of events (as indicated in the EVTYPE variable) are most harmful with respect to population health?</h4>
 <p>Since we have already subset the original data based on the EVTYPE, FATALITIES, INJURIES, PROPDMG, PROPDMGEXP, CROPDMG and CROPDMGEXP we now need to process the data further in such a way that for each “EVTYPE” we need to find the FATALTIES and INJURIES.</p>
 <p>Doing the above process would give us an insight as to which event type caused maximum fatalities and injuries.</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code># Aggregating and arranging the Fatalities and Injuries
+
+stormDataFatalities &lt;- arrange(aggregate(FATALITIES ~ EVTYPE, data = readStormData, sum), desc(FATALITIES), EVTYPE)[1:10,]
+
+stormDataFatalities</code></pre>
+<pre><code>##            EVTYPE FATALITIES
+## 1         TORNADO       5633
+## 2  EXCESSIVE HEAT       1903
+## 3     FLASH FLOOD        978
+## 4            HEAT        937
+## 5       LIGHTNING        816
+## 6       TSTM WIND        504
+## 7           FLOOD        470
+## 8     RIP CURRENT        368
+## 9       HIGH WIND        248
+## 10      AVALANCHE        224</code></pre>
+<pre class="r"><code>stormDataInjuries &lt;- arrange(aggregate(INJURIES ~ EVTYPE, data = readStormData, sum), desc(INJURIES), EVTYPE)[1:10,] 
+
+stormDataInjuries</code></pre>
+<pre><code>##               EVTYPE INJURIES
+## 1            TORNADO    91346
+## 2          TSTM WIND     6957
+## 3              FLOOD     6789
+## 4     EXCESSIVE HEAT     6525
+## 5          LIGHTNING     5230
+## 6               HEAT     2100
+## 7          ICE STORM     1975
+## 8        FLASH FLOOD     1777
+## 9  THUNDERSTORM WIND     1488
+## 10              HAIL     1361</code></pre>
 </div>
 </div>
 </div>
