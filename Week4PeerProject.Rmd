@@ -41,12 +41,41 @@ The Storm Data is fetched, downloaded to the local system and then its contents 
 
 stormData <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2"
 
-# The file is downloaded using the downoad.file function.
+# The file is downloaded using the download.file function.
 download.file(stormData, destfile = "../StormData.csv.bz2")
 
 # reading data from the file
 readStormData <- read.csv("../StormData.csv.bz2")
 
+# Fetching column names of Storm Data using the colNames function
+colnames(readStormData)
+
+str(readStormData)
+
+# Fetching first few rows of Storm Data
 head(readStormData)
 
+# fetching the unique event type in the Storm Data
+head(unique(readStormData$EVTYPE))
+
+```
+
+We notice that the Date format is that of a Character from the below code
+
+```{r}
+class(readStormData$BGN_DATE)
+```
+
+We will convert it to Date format using the as.Date function and assign it to a new variable stormDate
+
+```{r}
+stormDate <- as.Date(readStormData$BGN_DATE, format = "%m%d%Y %H:%m:%s")
+class(stormDate)
+```
+
+Getting the events type as a Data Frame
+
+```{r}
+stormEventType <- as.data.frame(table(readStormData))
+stormEventType
 ```
