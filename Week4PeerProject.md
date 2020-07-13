@@ -176,8 +176,8 @@ We will convert it to Date format using the as.Date function and assign it to a 
 
 
 ```r
-stormDate <- as.Date(readStormData$BGN_DATE, format = "%m%d%Y %H:%m:%s")
-class(stormDate)
+readStormData$BGN_DATE <- as.Date(readStormData$BGN_DATE, format = "%m%d%Y %H:%m:%s")
+class(readStormData$BGN_DATE)
 ```
 
 ```
@@ -190,10 +190,8 @@ Getting the events type as a Data Frame
 ```r
 # subsetting the Storm Data
 readStormData <- subset(readStormData, 
-                        select = c(
-                          EVTYPE, FATALITIES, 
-                          INJURIES, PROPDMG, 
-                          PROPDMGEXP, CROPDMG, 
+                        select = c(EVTYPE, FATALITIES, 
+                          INJURIES, PROPDMG, PROPDMGEXP, CROPDMG, 
                           CROPDMGEXP))
 
 unique(readStormData$PROPDMGEXP)
@@ -202,3 +200,11 @@ unique(readStormData$PROPDMGEXP)
 ```
 ##  [1] "K" "M" ""  "B" "m" "+" "0" "5" "6" "?" "4" "2" "3" "h" "7" "H" "-" "1" "8"
 ```
+
+
+#### 1. Across the United States, which types of events (as indicated in the EVTYPE variable) are most harmful with respect to population health?
+
+
+Since we have already subset the original data based on the EVTYPE, FATALITIES, INJURIES, PROPDMG, PROPDMGEXP, CROPDMG and CROPDMGEXP we now need to process the data further in such a way that for each "EVTYPE" we need to find the FATALTIES and INJURIES.
+
+Doing the above process would give us an insight as to which event type caused maximum fatalities and injuries.
