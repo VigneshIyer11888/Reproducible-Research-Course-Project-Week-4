@@ -234,7 +234,9 @@ library(dplyr)
 ```r
 # Aggregating and arranging the Fatalities and Injuries
 
-stormDataFatalities <- arrange(aggregate(FATALITIES ~ EVTYPE, data = readStormData, sum), desc(FATALITIES), EVTYPE)[1:10,]
+stormDataFatalities <- arrange(
+  aggregate(FATALITIES ~ EVTYPE, data = readStormData, sum),
+  desc(FATALITIES), EVTYPE)[1:10,]
 
 stormDataFatalities
 ```
@@ -254,7 +256,9 @@ stormDataFatalities
 ```
 
 ```r
-stormDataInjuries <- arrange(aggregate(INJURIES ~ EVTYPE, data = readStormData, sum), desc(INJURIES), EVTYPE)[1:10,] 
+stormDataInjuries <- arrange(
+  aggregate(INJURIES ~ EVTYPE, data = readStormData, sum),
+  desc(INJURIES), EVTYPE)[1:10,] 
 
 stormDataInjuries
 ```

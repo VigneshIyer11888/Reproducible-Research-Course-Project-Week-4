@@ -523,7 +523,9 @@ unique(readStormData$PROPDMGEXP)</code></pre>
 ##     intersect, setdiff, setequal, union</code></pre>
 <pre class="r"><code># Aggregating and arranging the Fatalities and Injuries
 
-stormDataFatalities &lt;- arrange(aggregate(FATALITIES ~ EVTYPE, data = readStormData, sum), desc(FATALITIES), EVTYPE)[1:10,]
+stormDataFatalities &lt;- arrange(
+  aggregate(FATALITIES ~ EVTYPE, data = readStormData, sum),
+  desc(FATALITIES), EVTYPE)[1:10,]
 
 stormDataFatalities</code></pre>
 <pre><code>##            EVTYPE FATALITIES
@@ -537,7 +539,9 @@ stormDataFatalities</code></pre>
 ## 8     RIP CURRENT        368
 ## 9       HIGH WIND        248
 ## 10      AVALANCHE        224</code></pre>
-<pre class="r"><code>stormDataInjuries &lt;- arrange(aggregate(INJURIES ~ EVTYPE, data = readStormData, sum), desc(INJURIES), EVTYPE)[1:10,] 
+<pre class="r"><code>stormDataInjuries &lt;- arrange(
+  aggregate(INJURIES ~ EVTYPE, data = readStormData, sum),
+  desc(INJURIES), EVTYPE)[1:10,] 
 
 stormDataInjuries</code></pre>
 <pre><code>##               EVTYPE INJURIES
