@@ -3,9 +3,9 @@ title: "Reproducible Research - Week 4 Peer Project"
 author: "Vignesh C Iyer"
 date: "7/12/2020"
 output:
-  pdf_document: default
   html_document:
     keep_md: yes
+  pdf_document: default
 ---
 
 ## Synopsis
@@ -76,6 +76,13 @@ class(stormDate)
 Getting the events type as a Data Frame
 
 ```{r}
-stormEventType <- as.data.frame(table(readStormData))
-stormEventType
+# subsetting the Storm Data
+readStormData <- subset(readStormData, 
+                        select = c(
+                          EVTYPE, FATALITIES, 
+                          INJURIES, PROPDMG, 
+                          PROPDMGEXP, CROPDMG, 
+                          CROPDMGEXP))
+
+unique(readStormData$PROPDMGEXP)
 ```

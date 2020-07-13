@@ -499,6 +499,17 @@ head(unique(readStormData$EVTYPE))</code></pre>
 <pre class="r"><code>stormDate &lt;- as.Date(readStormData$BGN_DATE, format = &quot;%m%d%Y %H:%m:%s&quot;)
 class(stormDate)</code></pre>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
+<p>Getting the events type as a Data Frame</p>
+<pre class="r"><code># subsetting the Storm Data
+readStormData &lt;- subset(readStormData, 
+                        select = c(
+                          EVTYPE, FATALITIES, 
+                          INJURIES, PROPDMG, 
+                          PROPDMGEXP, CROPDMG, 
+                          CROPDMGEXP))
+
+unique(readStormData$PROPDMGEXP)</code></pre>
+<pre><code>##  [1] &quot;K&quot; &quot;M&quot; &quot;&quot;  &quot;B&quot; &quot;m&quot; &quot;+&quot; &quot;0&quot; &quot;5&quot; &quot;6&quot; &quot;?&quot; &quot;4&quot; &quot;2&quot; &quot;3&quot; &quot;h&quot; &quot;7&quot; &quot;H&quot; &quot;-&quot; &quot;1&quot; &quot;8&quot;</code></pre>
 </div>
 </div>
 

@@ -183,3 +183,22 @@ class(stormDate)
 ```
 ## [1] "Date"
 ```
+
+Getting the events type as a Data Frame
+
+
+```r
+# subsetting the Storm Data
+readStormData <- subset(readStormData, 
+                        select = c(
+                          EVTYPE, FATALITIES, 
+                          INJURIES, PROPDMG, 
+                          PROPDMGEXP, CROPDMG, 
+                          CROPDMGEXP))
+
+unique(readStormData$PROPDMGEXP)
+```
+
+```
+##  [1] "K" "M" ""  "B" "m" "+" "0" "5" "6" "?" "4" "2" "3" "h" "7" "H" "-" "1" "8"
+```
