@@ -481,3 +481,24 @@ totaldamage
 Plotting the graphs for Property, Crop and total damage
 
 
+```r
+library(lattice)
+library(dplyr)
+par(mfrow=c(1,2))
+
+# Plotting CROP Damage in billions($) based on the top ten event types
+barplot(cropdamage$stormCropDamage, 
+        names.arg = cropdamage$EVTYPE,
+        las = 2,
+        col="#FF7002",
+        main="Crop Damage - top 10 events")
+
+# Plotting PROPERTY Damage in billions($) based on the top ten event types
+barplot(propertydamage$stormPropertyDamage,
+        names.arg = propertydamage$EVTYPE,
+        las =2,
+        col = "#FF7002",
+        main="Property Damage- top 10 events")
+```
+
+![](Week4PeerProject_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
