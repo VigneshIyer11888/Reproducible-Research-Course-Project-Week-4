@@ -278,3 +278,32 @@ stormDataInjuries
 ## 9  THUNDERSTORM WIND     1488
 ## 10              HAIL     1361
 ```
+
+From both the "stormDataFatalities" and "stormDataInjuries" we can see that event type "TORNADO" has registered the highest number of Fatalities and Injuries, now let is plot the same on the graph.
+
+
+```r
+library(lattice)
+# plotting the graphs for the Fatalities and Injuries
+
+par(mfrow=c(1,2),mar=c(10,3,3,2))
+
+# Fatalities by event type
+
+barplot(stormDataFatalities$FATALITIES,
+        names.arg=stormDataFatalities$EVTYPE,
+        las=2,
+        col="#FF6504",
+        ylab="Fatalities",
+        main="Top 10 fatalities by weather event")
+
+# Injuries by event type
+barplot(stormDataInjuries$INJURIES,
+        names.arg=stormDataInjuries$EVTYPE,
+        las=2,
+        col="#FF6504",
+        ylab="Injuries",
+        main="Top 10 Injuries by weather event")
+```
+
+![](Week4PeerProject_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
