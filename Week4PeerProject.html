@@ -527,6 +527,7 @@ stormDataFatalities &lt;- arrange(
   aggregate(FATALITIES ~ EVTYPE, data = readStormData, sum),
   desc(FATALITIES), EVTYPE)[1:10,]
 
+# Aggregated data of the Storm Fatalities based on the event type
 stormDataFatalities</code></pre>
 <pre><code>##            EVTYPE FATALITIES
 ## 1         TORNADO       5633
@@ -543,6 +544,7 @@ stormDataFatalities</code></pre>
   aggregate(INJURIES ~ EVTYPE, data = readStormData, sum),
   desc(INJURIES), EVTYPE)[1:10,] 
 
+# Aggregated data of the Storm Injuries based on the event type
 stormDataInjuries</code></pre>
 <pre><code>##               EVTYPE INJURIES
 ## 1            TORNADO    91346

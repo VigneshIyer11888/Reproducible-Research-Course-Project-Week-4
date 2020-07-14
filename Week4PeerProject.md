@@ -238,6 +238,7 @@ stormDataFatalities <- arrange(
   aggregate(FATALITIES ~ EVTYPE, data = readStormData, sum),
   desc(FATALITIES), EVTYPE)[1:10,]
 
+# Aggregated data of the Storm Fatalities based on the event type
 stormDataFatalities
 ```
 
@@ -260,6 +261,7 @@ stormDataInjuries <- arrange(
   aggregate(INJURIES ~ EVTYPE, data = readStormData, sum),
   desc(INJURIES), EVTYPE)[1:10,] 
 
+# Aggregated data of the Storm Injuries based on the event type
 stormDataInjuries
 ```
 
