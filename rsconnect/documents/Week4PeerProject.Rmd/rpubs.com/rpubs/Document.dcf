@@ -1,4 +1,4 @@
-name: Publish Document
+name: Document
 title:
 username:
 account: rpubs
@@ -7,4 +7,4 @@ hostUrl: rpubs.com
 appId: https://api.rpubs.com/api/v1/document/639129/1e5917fa774e4cd0bd8c533085f34353
 bundleId: https://api.rpubs.com/api/v1/document/639129/1e5917fa774e4cd0bd8c533085f34353
 url: http://rpubs.com/publish/claim/639129/d0b3a448686749c1bfbf5edb22902799
-when: 1594731068.43299
+when: 1594730902.5519
