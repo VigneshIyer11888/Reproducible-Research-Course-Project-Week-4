@@ -1,11 +1,10 @@
 ---
 title: "Reproducible Research - Week 4 Peer Project"
 author: "Vignesh C Iyer"
-date: "7/12/2020"
+date: "7/14/2020"
 output:
   html_document:
     keep_md: yes
-  pdf_document: default
 ---
 
 ## Synopsis
@@ -193,12 +192,6 @@ readStormData <- subset(readStormData,
                         select = c(EVTYPE, FATALITIES, 
                           INJURIES, PROPDMG, PROPDMGEXP, CROPDMG, 
                           CROPDMGEXP))
-
-unique(readStormData$PROPDMGEXP)
-```
-
-```
-##  [1] "K" "M" ""  "B" "m" "+" "0" "5" "6" "?" "4" "2" "3" "h" "7" "H" "-" "1" "8"
 ```
 
 
@@ -307,3 +300,93 @@ barplot(stormDataInjuries$INJURIES,
 ```
 
 ![](Week4PeerProject_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+
+#### Across the United States, which types of events have the greatest economic consequences?
+
+The greatest economic consequences can be measured by the columns PROPDMG, PROPDMGEXP, CROPDMG, CROPDMGEXP.
+
+The columns names denote the following
+
+* PROPDMG --> Property Damage
+* CROPGMG --> Crop Damage
+* PROPDMGEXP --> Property Damage Exponent
+* CROPDMGEXP --> Crop Damage Exponent
+
+We need to first associate the Damage caused to the Event type.
+
+To do that we need to convert the notations "K","M","","B","m","+","0","5","6","?","4","2","3","h","7","H","-" "1","8" to their corresponding powers of 10 or exponential values.
+
+We do that by the following operation
+
+
+```r
+unique(readStormData$PROPDMGEXP)
+```
+
+```
+##  [1] "K" "M" ""  "B" "m" "+" "0" "5" "6" "?" "4" "2" "3" "h" "7" "H" "-" "1" "8"
+```
+
+```r
+# convert the notations "K","M","","B","m","+","0","5","6","?","4","2","3","h","7","H","-" "1","8" to their corresponding powers of 10 or exponential values.
+
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "K"] <- 1000
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "M"] <- 1000000
+readStormData$PROPEXP[readStormData$PROPDMGEXP == ""] <- 1
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "B"] <- 1000000000
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "m"] <- 1000000
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "0"] <- 1
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "5"] <- 100000
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "6"] <- 1000000
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "4"] <- 10000
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "2"] <- 100
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "3"] <- 1000
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "h"] <- 100
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "7"] <- 10000000
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "H"] <- 100
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "1"] <- 10
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "8"] <- 100000000
+# Assigning '0' to invalid exponent data
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "+"] <- 0
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "-"] <- 0
+readStormData$PROPEXP[readStormData$PROPDMGEXP == "?"] <- 0
+
+class(readStormData$PROPEXP)
+```
+
+```
+## [1] "numeric"
+```
+
+```r
+# Calculating the property damage value
+
+stormPropertyDamage <- readStormData$PROPDMG * readStormData$PROPEXP
+```
+
+After having converted the notations for property damage we now need to do the same for the crop damage which will be achieved by the following code
+
+
+```r
+unique(readStormData$CROPDMGEXP)
+```
+
+```
+## [1] ""  "M" "K" "m" "B" "?" "0" "k" "2"
+```
+
+```r
+# Assigning values for the crop exponent data 
+readStormData$CROPEXP[readStormData$CROPDMGEXP == "M"] <- 1000000
+readStormData$CROPEXP[readStormData$CROPDMGEXP == "K"] <- 1000
+readStormData$CROPEXP[readStormData$CROPDMGEXP == "m"] <- 1000000
+readStormData$CROPEXP[readStormData$CROPDMGEXP == "B"] <- 1000000000
+readStormData$CROPEXP[readStormData$CROPDMGEXP == "0"] <- 1
+readStormData$CROPEXP[readStormData$CROPDMGEXP == "k"] <- 1000
+readStormData$CROPEXP[readStormData$CROPDMGEXP == "2"] <- 100
+readStormData$CROPEXP[readStormData$CROPDMGEXP == ""] <- 1
+# Assigning '0' to invalid exponent data
+readStormData$CROPEXP[readStormData$CROPDMGEXP == "?"] <- 0
+
+stormCropDamage <- readStormData$CROPDMG * readStormData$CROPEXP
+```
