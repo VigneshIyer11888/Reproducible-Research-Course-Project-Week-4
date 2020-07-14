@@ -484,21 +484,36 @@ Plotting the graphs for Property, Crop and total damage
 ```r
 library(lattice)
 library(dplyr)
-par(mfrow=c(1,2))
+par(mfrow=c(1,3),mar=c(10,3,3,2))
 
 # Plotting CROP Damage in billions($) based on the top ten event types
 barplot(cropdamage$stormCropDamage, 
         names.arg = cropdamage$EVTYPE,
         las = 2,
         col="#FF7002",
-        main="Crop Damage - top 10 events")
+        main="Crop Damage(billions($))")
 
 # Plotting PROPERTY Damage in billions($) based on the top ten event types
 barplot(propertydamage$stormPropertyDamage,
         names.arg = propertydamage$EVTYPE,
         las =2,
         col = "#FF7002",
-        main="Property Damage- top 10 events")
+        main="Property Damage(billions($))")
+
+# Plotting TOTAL damage in billions($) based on the top ten event types
+barplot(totaldamage$stormTotalDamage,
+        names.arg = totaldamage$EVTYPE,
+        las = 2,
+        col = "#FF7002",
+        main = "Total Damage(billions($))")
 ```
 
 ![](Week4PeerProject_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+
+From the above plots we can conclude the following:
+
+* The crops suffered maximum damage during the drought season wherein the losses were close to $14 billion.
+
+* The damage to property was maximum during floods amounting to $14.4 billion
+
+* On the whole damage to both Crops and property was maximum during times when there were floods which amounted to $15 billion
