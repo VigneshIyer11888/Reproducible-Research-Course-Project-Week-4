@@ -1,10 +1,11 @@
 ---
 title: "Reproducible Research - Week 4 Peer Project"
 author: "Vignesh C Iyer"
-date: "7/14/2020"
+date: "7/12/2020"
 output:
   html_document:
     keep_md: yes
+  pdf_document: default
 ---
 
 ## Synopsis
@@ -390,3 +391,93 @@ readStormData$CROPEXP[readStormData$CROPDMGEXP == "?"] <- 0
 
 stormCropDamage <- readStormData$CROPDMG * readStormData$CROPEXP
 ```
+Printing out the Column names
+
+
+```r
+colnames(readStormData)
+```
+
+```
+## [1] "EVTYPE"     "FATALITIES" "INJURIES"   "PROPDMG"    "PROPDMGEXP"
+## [6] "CROPDMG"    "CROPDMGEXP" "PROPEXP"    "CROPEXP"
+```
+
+```r
+# Calculating the total damage
+readStormData$stormTotalDamage <- stormPropertyDamage + stormCropDamage
+
+colnames(readStormData)
+```
+
+```
+##  [1] "EVTYPE"           "FATALITIES"       "INJURIES"         "PROPDMG"         
+##  [5] "PROPDMGEXP"       "CROPDMG"          "CROPDMGEXP"       "PROPEXP"         
+##  [9] "CROPEXP"          "stormTotalDamage"
+```
+
+```r
+# Finding the top 10 events based on which the maximum economic destruction has occurred
+
+propertydamage <- arrange(aggregate(stormPropertyDamage ~ EVTYPE, data=readStormData, sum),desc(stormPropertyDamage),EVTYPE)[1:10,]
+
+propertydamage
+```
+
+```
+##               EVTYPE stormPropertyDamage
+## 1              FLOOD        144657709807
+## 2  HURRICANE/TYPHOON         69305840000
+## 3            TORNADO         56947380617
+## 4        STORM SURGE         43323536000
+## 5        FLASH FLOOD         16822673979
+## 6               HAIL         15735267513
+## 7          HURRICANE         11868319010
+## 8     TROPICAL STORM          7703890550
+## 9       WINTER STORM          6688497251
+## 10         HIGH WIND          5270046260
+```
+
+```r
+cropdamage <- arrange(aggregate(stormCropDamage ~ EVTYPE, data=readStormData, sum),desc(stormCropDamage),EVTYPE)[1:10,]
+
+cropdamage
+```
+
+```
+##               EVTYPE stormCropDamage
+## 1            DROUGHT     13972566000
+## 2              FLOOD      5661968450
+## 3        RIVER FLOOD      5029459000
+## 4          ICE STORM      5022113500
+## 5               HAIL      3025954473
+## 6          HURRICANE      2741910000
+## 7  HURRICANE/TYPHOON      2607872800
+## 8        FLASH FLOOD      1421317100
+## 9       EXTREME COLD      1292973000
+## 10      FROST/FREEZE      1094086000
+```
+
+```r
+totaldamage <- arrange(aggregate(stormTotalDamage ~ EVTYPE, data=readStormData, sum),desc(stormTotalDamage),EVTYPE)[1:10,]
+
+totaldamage
+```
+
+```
+##               EVTYPE stormTotalDamage
+## 1              FLOOD     150319678257
+## 2  HURRICANE/TYPHOON      71913712800
+## 3            TORNADO      57362333887
+## 4        STORM SURGE      43323541000
+## 5               HAIL      18761221986
+## 6        FLASH FLOOD      18243991079
+## 7            DROUGHT      15018672000
+## 8          HURRICANE      14610229010
+## 9        RIVER FLOOD      10148404500
+## 10         ICE STORM       8967041360
+```
+
+Plotting the graphs for Property, Crop and total damage
+
+

@@ -364,7 +364,7 @@ summary {
 
 <h1 class="title toc-ignore">Reproducible Research - Week 4 Peer Project</h1>
 <h4 class="author">Vignesh C Iyer</h4>
-<h4 class="date">7/14/2020</h4>
+<h4 class="date">7/12/2020</h4>
 
 </div>
 
@@ -637,6 +637,62 @@ readStormData$CROPEXP[readStormData$CROPDMGEXP == &quot;&quot;] &lt;- 1
 readStormData$CROPEXP[readStormData$CROPDMGEXP == &quot;?&quot;] &lt;- 0
 
 stormCropDamage &lt;- readStormData$CROPDMG * readStormData$CROPEXP</code></pre>
+<p>Printing out the Column names</p>
+<pre class="r"><code>colnames(readStormData)</code></pre>
+<pre><code>## [1] &quot;EVTYPE&quot;     &quot;FATALITIES&quot; &quot;INJURIES&quot;   &quot;PROPDMG&quot;    &quot;PROPDMGEXP&quot;
+## [6] &quot;CROPDMG&quot;    &quot;CROPDMGEXP&quot; &quot;PROPEXP&quot;    &quot;CROPEXP&quot;</code></pre>
+<pre class="r"><code># Calculating the total damage
+readStormData$stormTotalDamage &lt;- stormPropertyDamage + stormCropDamage
+
+colnames(readStormData)</code></pre>
+<pre><code>##  [1] &quot;EVTYPE&quot;           &quot;FATALITIES&quot;       &quot;INJURIES&quot;         &quot;PROPDMG&quot;         
+##  [5] &quot;PROPDMGEXP&quot;       &quot;CROPDMG&quot;          &quot;CROPDMGEXP&quot;       &quot;PROPEXP&quot;         
+##  [9] &quot;CROPEXP&quot;          &quot;stormTotalDamage&quot;</code></pre>
+<pre class="r"><code># Finding the top 10 events based on which the maximum economic destruction has occurred
+
+propertydamage &lt;- arrange(aggregate(stormPropertyDamage ~ EVTYPE, data=readStormData, sum),desc(stormPropertyDamage),EVTYPE)[1:10,]
+
+propertydamage</code></pre>
+<pre><code>##               EVTYPE stormPropertyDamage
+## 1              FLOOD        144657709807
+## 2  HURRICANE/TYPHOON         69305840000
+## 3            TORNADO         56947380617
+## 4        STORM SURGE         43323536000
+## 5        FLASH FLOOD         16822673979
+## 6               HAIL         15735267513
+## 7          HURRICANE         11868319010
+## 8     TROPICAL STORM          7703890550
+## 9       WINTER STORM          6688497251
+## 10         HIGH WIND          5270046260</code></pre>
+<pre class="r"><code>cropdamage &lt;- arrange(aggregate(stormCropDamage ~ EVTYPE, data=readStormData, sum),desc(stormCropDamage),EVTYPE)[1:10,]
+
+cropdamage</code></pre>
+<pre><code>##               EVTYPE stormCropDamage
+## 1            DROUGHT     13972566000
+## 2              FLOOD      5661968450
+## 3        RIVER FLOOD      5029459000
+## 4          ICE STORM      5022113500
+## 5               HAIL      3025954473
+## 6          HURRICANE      2741910000
+## 7  HURRICANE/TYPHOON      2607872800
+## 8        FLASH FLOOD      1421317100
+## 9       EXTREME COLD      1292973000
+## 10      FROST/FREEZE      1094086000</code></pre>
+<pre class="r"><code>totaldamage &lt;- arrange(aggregate(stormTotalDamage ~ EVTYPE, data=readStormData, sum),desc(stormTotalDamage),EVTYPE)[1:10,]
+
+totaldamage</code></pre>
+<pre><code>##               EVTYPE stormTotalDamage
+## 1              FLOOD     150319678257
+## 2  HURRICANE/TYPHOON      71913712800
+## 3            TORNADO      57362333887
+## 4        STORM SURGE      43323541000
+## 5               HAIL      18761221986
+## 6        FLASH FLOOD      18243991079
+## 7            DROUGHT      15018672000
+## 8          HURRICANE      14610229010
+## 9        RIVER FLOOD      10148404500
+## 10         ICE STORM       8967041360</code></pre>
+<p>Plotting the graphs for Property, Crop and total damage</p>
 </div>
 </div>
 </div>
