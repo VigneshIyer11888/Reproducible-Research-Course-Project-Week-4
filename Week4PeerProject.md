@@ -349,7 +349,8 @@ unique(readStormData$PROPDMGEXP)
 ```
 
 ```r
-# convert the notations "K","M","","B","m","+","0","5","6","?","4","2","3","h","7","H","-" "1","8" to their corresponding powers of 10 or exponential values.
+# convert the notations "K","M","","B","m","+","0","5","6","?","4","2","3","h","7",
+# "H","-" "1","8" to their corresponding powers of 10 or exponential values.
 
 readStormData$PROPEXP[readStormData$PROPDMGEXP == "K"] <- 1000
 readStormData$PROPEXP[readStormData$PROPDMGEXP == "M"] <- 1000000
@@ -439,7 +440,11 @@ colnames(readStormData)
 ```r
 # Finding the top 10 events based on which the maximum economic destruction has occurred
 
-propertydamage <- arrange(aggregate(stormPropertyDamage ~ EVTYPE, data=readStormData, sum),desc(stormPropertyDamage),EVTYPE)[1:10,]
+propertydamage <- arrange(
+  aggregate(
+    stormPropertyDamage ~ EVTYPE, 
+    data=readStormData, sum),
+  desc(stormPropertyDamage),EVTYPE)[1:10,]
 
 propertydamage
 ```
@@ -459,7 +464,11 @@ propertydamage
 ```
 
 ```r
-cropdamage <- arrange(aggregate(stormCropDamage ~ EVTYPE, data=readStormData, sum),desc(stormCropDamage),EVTYPE)[1:10,]
+cropdamage <- arrange(
+  aggregate(
+    stormCropDamage ~ EVTYPE, 
+    data=readStormData, sum),
+  desc(stormCropDamage),EVTYPE)[1:10,]
 
 cropdamage
 ```
@@ -479,7 +488,11 @@ cropdamage
 ```
 
 ```r
-totaldamage <- arrange(aggregate(stormTotalDamage ~ EVTYPE, data=readStormData, sum),desc(stormTotalDamage),EVTYPE)[1:10,]
+totaldamage <- arrange(
+  aggregate(
+    stormTotalDamage ~ EVTYPE, 
+    data=readStormData, sum),
+  desc(stormTotalDamage),EVTYPE)[1:10,]
 
 totaldamage
 ```
