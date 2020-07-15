@@ -302,7 +302,7 @@ barplot(stormDataInjuries$INJURIES,
 
 ![](Week4PeerProject_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
-#### Across the United States, which types of events have the greatest economic consequences?
+#### 2. Across the United States, which types of events have the greatest economic consequences?
 
 The greatest economic consequences can be measured by the columns PROPDMG, PROPDMGEXP, CROPDMG, CROPDMGEXP.
 
@@ -477,6 +477,8 @@ totaldamage
 ## 9        RIVER FLOOD      10148404500
 ## 10         ICE STORM       8967041360
 ```
+
+There is a certain level of damage and destruction that occurs during any sort of natural calamity which amounts to certain economical losses.
 
 Plotting the graphs for Property, Crop and total damage
 
