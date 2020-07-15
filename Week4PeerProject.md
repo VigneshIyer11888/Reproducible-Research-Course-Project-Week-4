@@ -7,17 +7,23 @@ output:
     keep_md: yes
   pdf_document: default
 ---
-
+***
 ## Synopsis
+***
 
 Storms and other severe weather events can cause both public health and economic problems for communities and municipalities. Many severe events can result in fatalities, injuries, and property damage, and preventing such outcomes to the extent possible is a key concern.
 
 This project involves exploring the U.S. National Oceanic and Atmospheric Administration's (NOAA) storm database. This database tracks characteristics of major storms and weather events in the United States, including when and where they occur, as well as estimates of any fatalities, injuries, and property damage.
 
+***
 ## Assignment
+***
+
 The basic goal of this assignment is to explore the NOAA Storm Database and answer some basic questions about severe weather events. You must use the database to answer the questions below and show the code for your entire analysis. Your analysis can consist of tables, figures, or other summaries. You may use any R package you want to support your analysis.
 
+***
 ## Data
+***
 
 The data for this assignment come in the form of a comma-separated-value file compressed via the bzip2 algorithm to reduce its size. You can download the file from the course web site:
 
@@ -195,9 +201,9 @@ readStormData <- subset(readStormData,
                           CROPDMGEXP))
 ```
 
-
+***
 #### 1. Across the United States, which types of events (as indicated in the EVTYPE variable) are most harmful with respect to population health?
-
+***
 
 Since we have already subset the original data based on the EVTYPE, FATALITIES, INJURIES, PROPDMG, PROPDMGEXP, CROPDMG and CROPDMGEXP we now need to process the data further in such a way that for each "EVTYPE" we need to find the FATALTIES and INJURIES.
 
@@ -302,7 +308,11 @@ barplot(stormDataInjuries$INJURIES,
 
 ![](Week4PeerProject_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
-#### 2. Across the United States, which types of events have the greatest economic consequences?
+***
+
+####  2. Across the United States, which types of events have the greatest economic consequences?
+
+***
 
 The greatest economic consequences can be measured by the columns PROPDMG, PROPDMGEXP, CROPDMG, CROPDMGEXP.
 
@@ -486,7 +496,7 @@ Plotting the graphs for Property, Crop and total damage
 ```r
 library(lattice)
 library(dplyr)
-par(mfrow=c(1,3),mar=c(10,3,3,2))
+par(mfrow=c(1,3),mar=c(10,4,4,4))
 
 # Plotting CROP Damage in billions($) based on the top ten event types
 barplot(cropdamage$stormCropDamage, 
@@ -512,7 +522,12 @@ barplot(totaldamage$stormTotalDamage,
 
 ![](Week4PeerProject_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
+***
+## Results
+***
 From the above plots we can conclude the following:
+
+* The maximum number of fatalities reported was 5633 and injuries was 91346 all mainly due to tornadoes
 
 * The crops suffered maximum damage during the drought season wherein the losses were close to $14 billion.
 
