@@ -7,6 +7,11 @@ output:
     keep_md: yes
   pdf_document: default
 ---
+
+***
+# Impact Analysis of Storm and Weather data
+***
+
 ***
 ## Synopsis
 ***
@@ -22,7 +27,7 @@ This project involves exploring the U.S. National Oceanic and Atmospheric Admini
 The basic goal of this assignment is to explore the NOAA Storm Database and answer some basic questions about severe weather events. You must use the database to answer the questions below and show the code for your entire analysis. Your analysis can consist of tables, figures, or other summaries. You may use any R package you want to support your analysis.
 
 ***
-## Data
+## Data Processing
 ***
 
 The data for this assignment come in the form of a comma-separated-value file compressed via the bzip2 algorithm to reduce its size. You can download the file from the course web site:
