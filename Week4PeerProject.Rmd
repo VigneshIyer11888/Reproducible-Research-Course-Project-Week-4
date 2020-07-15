@@ -166,6 +166,16 @@ We need to first associate the Damage caused to the Event type.
 
 To do that we need to convert the notations "K","M","","B","m","+","0","5","6","?","4","2","3","h","7","H","-" "1","8" to their corresponding powers of 10 or exponential values.
 
+For example:
+
+* H represents 100
+* K represents 1,000
+* M represents 1,000,000
+* B represents 1,000,000,000
+* '6' can be converted as a million or 10^6
+* '5' can be converted as a ten thousand or 10^5
+
+and so on..
 We do that by the following operation
 
 ```{r}
